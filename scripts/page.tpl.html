@@ -1,0 +1,217 @@
+<title>__TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0b1324;--panel:#111c33;--panel-2:#16233f;--line:#25365c;
+  --ink:#e6ecf7;--muted:#93a3c2;--accent:#3fd8f0;--accent-ink:#06202a;
+  --ok:#47d68a;--ok-bg:#0f2d22;--fix:#f5b544;--fix-bg:#33260c;
+  --radius:10px;--display:'Chakra Petch',system-ui,sans-serif;--body:'IBM Plex Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body)}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+header.intro{padding-block:28px 12px}
+h1{font:700 26px/1.2 var(--display);letter-spacing:.02em;margin:0 0 6px}
+.intro p{margin:0;color:var(--muted);max-width:68ch}
+.notice{margin-top:10px;padding:8px 12px;border:1px solid var(--fix);border-radius:var(--radius);background:var(--fix-bg);color:var(--ink);display:none}
+.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar-in{max-width:1280px;margin:0 auto;padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.counts{font:600 14px/1 var(--display);display:flex;gap:14px;flex-wrap:wrap}
+.counts b{font-size:17px}
+.counts .c-ok b{color:var(--ok)}.counts .c-fix b{color:var(--fix)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button,.jump button{font:500 13px/1 var(--body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.jump{display:flex;gap:6px;align-items:center;margin-left:auto}
+.jump label{color:var(--muted);font-size:13px}
+.jump input{width:64px;font:600 14px var(--display);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+h2.sec{font:700 15px/1.2 var(--display);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:30px 0 12px;grid-column:1/-1}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:90px}
+.card[data-state="ok"]{border-color:var(--ok)}
+.card[data-state="fix"]{border-color:var(--fix)}
+.card[hidden],h2.sec[hidden]{display:none}
+figure{margin:0;position:relative;background:#050a14;aspect-ratio:4/3}
+figure img{width:100%;height:100%;object-fit:contain;display:block}
+.n{position:absolute;top:8px;left:8px;font:700 18px/1 var(--display);background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:6px 9px;min-width:34px;text-align:center}
+.card[data-state="ok"] .n{background:var(--ok)}
+.card[data-state="fix"] .n{background:var(--fix)}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.label{margin:6px 0 0;font:600 14px/1 var(--display);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.shows{margin:0}
+.sib{margin:0;font-size:13px;color:var(--muted);font-style:italic}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:12px;color:var(--muted);background:var(--panel-2);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.yours{margin:0;padding-left:18px;color:var(--ink)}
+.yours li{margin:0}
+.verdict{display:flex;gap:8px;margin-top:auto;padding-top:10px}
+.verdict button{flex:1;font:600 14px/1 var(--body);padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);cursor:pointer}
+.verdict .ok[aria-pressed="true"]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.verdict .fix[aria-pressed="true"]{background:var(--fix-bg);border-color:var(--fix);color:var(--fix)}
+textarea{width:100%;resize:vertical;font:14px/1.4 var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px}
+.saved{margin:0;min-height:1.2em;font-size:12px;color:var(--muted)}
+.empty{color:var(--muted);grid-column:1/-1;display:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}html{scroll-behavior:smooth}}
+@media (max-width:560px){.jump{margin-left:0}}
+</style>
+
+<div class="wrap">
+<header class="intro">
+  <h1>__TITLE__</h1>
+  <p>__INTRO__ Tap <b>Correct</b>, or <b>Needs fixing</b> and say what is wrong. Everything saves as you go.__SOURCE_NOTE__</p>
+  <p class="notice" id="notice"></p>
+</header>
+</div>
+
+<div class="bar"><div class="bar-in">
+  <div class="counts" aria-live="polite">
+    <span><b id="c-done">0</b> / __TOTAL__ reviewed</span>
+    <span class="c-ok"><b id="c-ok">0</b> correct</span>
+    <span class="c-fix"><b id="c-fix">0</b> to fix</span>
+  </div>
+  <div class="filters" role="group" aria-label="Filter">
+    <button type="button" id="f-all" data-f="all" aria-pressed="true">All</button>
+    <button type="button" id="f-todo" data-f="todo" aria-pressed="false">To review</button>
+    <button type="button" id="f-fix" data-f="fix" aria-pressed="false">Needs fixing</button>
+  </div>
+  <form class="jump" id="jump">
+    <label for="jump-n">Go to #</label>
+    <input id="jump-n" type="number" min="1" max="__TOTAL__" inputmode="numeric">
+    <button type="submit" id="jump-go">Go</button>
+  </form>
+</div></div>
+
+<main class="wrap">
+<div class="grid" id="grid">
+<!--CARDS-->
+<p class="empty" id="empty">Nothing here for this filter.</p>
+</div>
+</main>
+
+<script>
+(async () => {
+  const cards = [...document.querySelectorAll('.card')];
+  const byId = new Map(cards.map(c => [c.dataset.id, c]));
+  const state = new Map();      // id -> {status, note}
+  const dirty = new Set();      // ids with unsaved local edits
+  let filter = 'all';
+  const $ = id => document.getElementById(id);
+
+  function paint(card) {
+    const s = state.get(card.dataset.id) || {status: '', note: ''};
+    card.dataset.state = s.status || '';
+    card.querySelector('.ok').setAttribute('aria-pressed', s.status === 'ok');
+    card.querySelector('.fix').setAttribute('aria-pressed', s.status === 'fix');
+    const ta = card.querySelector('textarea');
+    if (document.activeElement !== ta && !dirty.has(card.dataset.id)) ta.value = s.note || '';
+  }
+  function counts() {
+    let ok = 0, fix = 0;
+    for (const s of state.values()) { if (s.status === 'ok') ok++; else if (s.status === 'fix') fix++; }
+    $('c-ok').textContent = ok; $('c-fix').textContent = fix; $('c-done').textContent = ok + fix;
+  }
+  function applyFilter() {
+    let shown = 0;
+    for (const c of cards) {
+      const st = c.dataset.state;
+      const vis = filter === 'all' || (filter === 'todo' && !st) || (filter === 'fix' && st === 'fix');
+      c.hidden = !vis; if (vis) shown++;
+    }
+    for (const h of document.querySelectorAll('h2.sec')) {
+      let el = h.nextElementSibling, any = false;
+      while (el && el.classList.contains('card')) { if (!el.hidden) { any = true; break; } el = el.nextElementSibling; }
+      h.hidden = !any;
+    }
+    $('empty').style.display = shown ? 'none' : 'block';
+  }
+
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.f;
+    document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    applyFilter();
+  }));
+  $('jump').addEventListener('submit', e => {
+    e.preventDefault();
+    const c = $('p' + parseInt($('jump-n').value, 10));
+    if (!c) return;
+    if (c.hidden) { filter = 'all'; document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', x.dataset.f === 'all')); applyFilter(); }
+    c.scrollIntoView({block: 'start'});
+    c.querySelector('.ok').focus({preventScroll: true});
+  });
+
+  const db = window.claude ? await claude.use('db').catch(() => null) : null;
+  const col = db ? db.collection('corrections') : null;
+  if (!col) {
+    const n = $('notice');
+    n.textContent = 'Saving is unavailable in this view (signed out or not permitted). You can still read every card.';
+    n.style.display = 'block';
+  }
+
+  // One write in flight per doc; later edits coalesce into the next write.
+  const inflight = new Map(), queued = new Set();
+  async function save(id) {
+    if (!col) return;
+    if (inflight.get(id)) { queued.add(id); return; }
+    inflight.set(id, true);
+    const card = byId.get(id), msg = card.querySelector('.saved');
+    const s = state.get(id) || {status: '', note: ''};
+    msg.textContent = 'Saving…';
+    try {
+      await col.doc(id).set({status: s.status || '', note: s.note || '', n: Number(card.id.slice(1)), at: Date.now()});
+      const current = state.get(id) || {status:'', note:''};
+      const matches = current.status === s.status && current.note === s.note;
+      if (matches && !queued.has(id)) { dirty.delete(id); msg.textContent = 'Saved'; }
+      else { msg.textContent = 'Unsaved changes'; }
+    } catch (e) {
+      msg.textContent = 'Not saved: ' + (e && e.code === 'permission_denied' ? 'no write permission' : 'try again');
+    } finally {
+      inflight.delete(id);
+      if (queued.delete(id)) save(id);
+    }
+  }
+
+  const timers = new Map();
+  for (const card of cards) {
+    const id = card.dataset.id;
+    card.querySelectorAll('.verdict button').forEach(b => b.addEventListener('click', () => {
+      const cur = state.get(id) || {status: '', note: ''};
+      const v = cur.status === b.dataset.v ? '' : b.dataset.v;
+      dirty.add(id);
+      state.set(id, {...cur, status: v});
+      paint(card); counts(); applyFilter(); save(id);
+      if (v === 'fix') card.querySelector('textarea').focus();
+    }));
+    const ta = card.querySelector('textarea');
+    ta.addEventListener('input', () => {
+      dirty.add(id);
+      const cur = state.get(id) || {status: '', note: ''};
+      const status = cur.status || (ta.value.trim() ? 'fix' : '');
+      state.set(id, {status, note: ta.value});
+      paint(card); counts();
+      clearTimeout(timers.get(id));
+      timers.set(id, setTimeout(() => save(id), 700));
+    });
+    ta.addEventListener('blur', () => { if (timers.has(id) && dirty.has(id)) { clearTimeout(timers.get(id)); save(id); } applyFilter(); });
+  }
+
+  if (col) {
+    col.onSnapshot(snap => {
+      for (const d of snap.docs) {
+        if (!byId.has(d.id) || dirty.has(d.id)) continue;
+        const data = d.data() || {};
+        state.set(d.id, {status: data.status || '', note: data.note || ''});
+        paint(byId.get(d.id));
+      }
+      counts(); applyFilter();
+    }, () => {
+      const n = $('notice');
+      n.textContent = 'Lost the connection to saved answers. Reload the page to continue.';
+      n.style.display = 'block';
+    });
+  }
+})();
+</script>

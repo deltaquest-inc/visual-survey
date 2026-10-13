@@ -1,0 +1,141 @@
+{
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "pins": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "subject": {
+      "type": "string"
+     },
+     "palette": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "light": {
+      "type": "string"
+     },
+     "rendering": {
+      "type": "string"
+     },
+     "outline": {
+      "type": "string",
+      "enum": [
+       "none",
+       "thin",
+       "medium",
+       "bold"
+      ]
+     },
+     "saturation": {
+      "type": "string",
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ]
+     },
+     "composition": {
+      "type": "string"
+     },
+     "mood": {
+      "type": "string"
+     },
+     "marks": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "tags": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "reading_vs_comment": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "subject",
+     "palette",
+     "light",
+     "rendering",
+     "outline",
+     "saturation",
+     "composition",
+     "mood",
+     "marks",
+     "tags",
+     "reading_vs_comment"
+    ]
+   }
+  },
+  "conclusions": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "palette": {
+     "type": "string"
+    },
+    "light": {
+     "type": "string"
+    },
+    "rendering": {
+     "type": "string"
+    },
+    "characters": {
+     "type": "string"
+    },
+    "environments": {
+     "type": "string"
+    },
+    "ui": {
+     "type": "string"
+    },
+    "formats": {
+     "type": "string"
+    },
+    "what_dislikes_share": {
+     "type": "string"
+    },
+    "tensions": {
+     "type": "string"
+    },
+    "direction_summary": {
+     "type": "string"
+    },
+    "vehicles_and_props": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "palette",
+    "light",
+    "rendering",
+    "characters",
+    "environments",
+    "vehicles_and_props",
+    "ui",
+    "formats",
+    "what_dislikes_share",
+    "tensions",
+    "direction_summary"
+   ]
+  }
+ },
+ "required": [
+  "pins",
+  "conclusions"
+ ]
+}
