@@ -74,9 +74,15 @@ per image that must contain `{id}`).
 a step-by-step walkthrough in `examples/cc0-demo/WALKTHROUGH.md`. Licence, creator and source
 page of each image are in `examples/cc0-demo/SOURCES.md`.
 
+## Contributing
+
+Issues and pull requests are welcome, see `CONTRIBUTING.md`. Security reports: `SECURITY.md`.
+Changes are listed in `CHANGELOG.md`.
+
 ## AI assistance
 
-This code was written by Kevin Bulme with AI coding assistants.
+This code was written by Delta Quest with AI coding assistants. A human reviews it, and the tests and
+linter run on every pull request.
 
 ## Licence
 
