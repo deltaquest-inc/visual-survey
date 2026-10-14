@@ -10,7 +10,7 @@ accounts support: `<codex-model>`, `<gemini-model>` are placeholders.
 1. `images/<id>.jpg`: the images, named by pin id (digits only).
 2. `run/manifest.json`: one entry per image: `id`, `category` (list), `comment` (list), `sentiment` (`like`, `mixed` or `dislike`).
 3. `run/context.md`: one paragraph about the product, put into every reviewer prompt.
-4. `run/claude.json`: `{id: one-line subject}`, your own first read of each image, written before any model runs. `review.py` refuses to start without it. Here it is written from the image titles.
+4. `run/claude.json`: `{id: one-line subject}`, your own first read of each image, written before any model runs. `review.py` refuses to start without it. Here it was written by looking at each image.
 
 ## 1. Check inputs without any model call
 
