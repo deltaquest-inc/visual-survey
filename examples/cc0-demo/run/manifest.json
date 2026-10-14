@@ -1,0 +1,82 @@
+[
+ {
+  "id": "1",
+  "category": [
+   "Vehicles"
+  ],
+  "comment": [
+   "Old vehicle at sunset, warm and dusty, I want this mood."
+  ],
+  "sentiment": "like"
+ },
+ {
+  "id": "2",
+  "category": [
+   "Vehicles"
+  ],
+  "comment": [
+   "Camper and truck in open desert, good scale."
+  ],
+  "sentiment": "like"
+ },
+ {
+  "id": "3",
+  "category": [
+   "Vehicles"
+  ],
+  "comment": [
+   "Rusted wreck is right, but the light is flat."
+  ],
+  "sentiment": "mixed"
+ },
+ {
+  "id": "4",
+  "category": [
+   "Vehicles"
+  ],
+  "comment": [
+   "Spray paint on the car is too busy."
+  ],
+  "sentiment": "dislike"
+ },
+ {
+  "id": "5",
+  "category": [
+   "Vehicles"
+  ],
+  "comment": [
+   "Heavy military shape is useful, the colours are dull."
+  ],
+  "sentiment": "mixed"
+ },
+ {
+  "id": "6",
+  "category": [
+   "Armour"
+  ],
+  "comment": [
+   "Clean plate shapes and a strong silhouette."
+  ],
+  "sentiment": "like"
+ },
+ {
+  "id": "7",
+  "category": [
+   "Armour"
+  ],
+  "comment": [
+   "Layered lacquer plates, good detail."
+  ],
+  "sentiment": "like"
+ },
+ {
+  "id": "8",
+  "category": [
+   "Armour"
+  ],
+  "comment": [
+   "Portrait setting is too formal, I want the armour alone."
+  ],
+  "sentiment": "dislike"
+ }
+]
