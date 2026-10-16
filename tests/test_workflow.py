@@ -157,15 +157,34 @@ assert.equal(saved.textContent,'Unsaved changes');snapshot({docs:[{id:'1',data:(
 
     def test_source_link_is_optional(self):
         common.dump(self.run/'shows.json', {i:{'shows':pin(i)['subject'],'tags':[]} for i in ['1','2']})
+        # build_page uses macOS sips in production. Stub that OS-specific command so this
+        # integration test also runs on Linux, while still checking its arguments and output.
+        bin_dir = self.root/'bin'; bin_dir.mkdir()
+        sips = bin_dir/'sips'
+        sips.write_text(f'''#!{sys.executable}
+import pathlib, sys
+args = sys.argv[1:]
+if args[:5] != ['-Z', '640', '-s', 'format', 'jpeg'] or args[6] != '--out':
+    raise SystemExit(f'unexpected sips arguments: {{args!r}}')
+if not pathlib.Path(args[5]).is_file():
+    raise SystemExit(f'missing source image: {{args[5]}}')
+pathlib.Path(args[7]).write_bytes(b'\\xff\\xd8test-jpeg\\xff\\xd9')
+''')
+        sips.chmod(0o755)
         cmd = [sys.executable, str(S/'build_page.py'), str(self.run), str(self.images), '--title','Test Check','--intro','Two picks','--respondent','Alex']
         env = {k: v for k, v in os.environ.items() if k != 'VS_SOURCE_URL_TEMPLATE'}
-        subprocess.run(cmd, check=True, capture_output=True, env=env)
+        env['PATH'] = str(bin_dir) + os.pathsep + env.get('PATH', '')
+        result = subprocess.run(cmd, capture_output=True, text=True, env=env)
+        self.assertEqual(result.returncode, 0, result.stderr)
         page = (self.run/'page.html').read_text()
         self.assertIn('Alex’s comment', page); self.assertIn('claude.use', page)
+        self.assertIn('data:image/jpeg;base64,', page)
         self.assertNotIn('https://example.com/', page); self.assertNotIn('opens the source page', page)
-        subprocess.run(cmd+['--source-url-template','https://example.com/{id}'], check=True, capture_output=True, env=env)
+        result = subprocess.run(cmd+['--source-url-template','https://example.com/{id}'], capture_output=True, text=True, env=env)
+        self.assertEqual(result.returncode, 0, result.stderr)
         page = (self.run/'page.html').read_text()
         self.assertIn('href="https://example.com/1"', page); self.assertIn('opens the source page', page)
+        self.assertIn('data:image/jpeg;base64,', page)
 
 
 if __name__ == '__main__': unittest.main()

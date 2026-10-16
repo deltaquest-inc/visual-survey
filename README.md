@@ -47,7 +47,9 @@ Pinterest, ask them to save the images and send them to you.
 Requirements: Python 3 (standard library only, no packages to install), and the CLI for each
 reviewer you run, already signed in: `codex`, `agy`, `claude`. `build_page.py` uses `sips`, so
 it runs on macOS only. The page it writes expects a host that provides a `claude.use` runtime
-with `db` and `user` capabilities (see the docstring in `scripts/build_page.py`).
+with `db` and `user` capabilities (see the docstring in `scripts/build_page.py`). Node.js is needed
+only to run the test suite's checks of generated browser JavaScript; it is not needed to run the
+survey scripts.
 
     git clone <this repository>
     cd visual-survey
