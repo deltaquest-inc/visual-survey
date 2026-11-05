@@ -89,3 +89,7 @@ linter run on every pull request.
 ## Licence
 
 MIT, see `LICENSE`.
+
+## Browser design system
+
+See [DESIGN.md](DESIGN.md). Run `npm ci && npm run design:check` before changing the generated correction-page UI; rebuild CSS with `npm run design:build`. The committed stylesheet keeps Python generation and respondent viewing self-contained.

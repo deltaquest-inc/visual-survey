@@ -1,0 +1,44 @@
+{
+  "apps": [
+    {
+      "name": "Survey correction page",
+      "package": "package.json",
+      "buildConfig": "package.json",
+      "styles": "scripts/design.source.css",
+      "entry": "scripts/build_page.py",
+      "importMarker": "design.css",
+      "design": "DESIGN.md",
+      "instructions": "CLAUDE.md",
+      "designLink": "DESIGN.md",
+      "tokenSource": "scripts/design.source.css",
+      "requiredTokens": [
+        "--bg",
+        "--ink",
+        "--muted",
+        "--accent",
+        "--accent-ink",
+        "--radius"
+      ],
+      "contrastPairs": [
+        {
+          "foreground": "--ink",
+          "background": "--bg",
+          "minimum": 4.5
+        },
+        {
+          "foreground": "--muted",
+          "background": "--bg",
+          "minimum": 4.5
+        },
+        {
+          "foreground": "--accent-ink",
+          "background": "--accent",
+          "minimum": 4.5
+        }
+      ],
+      "componentSources": [
+        "scripts/page.tpl.html"
+      ]
+    }
+  ]
+}

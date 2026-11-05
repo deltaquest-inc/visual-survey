@@ -1,0 +1,12 @@
+{
+  "name": "visual-survey-design",
+  "private": true,
+  "scripts": {
+    "design:build": "tailwindcss -i scripts/design.source.css -o scripts/design.css --minify",
+    "design:check": "node --test scripts/check-design-system.test.mjs && node scripts/check-design-system.mjs && node scripts/check-design-build.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "4.3.3",
+    "@tailwindcss/cli": "4.3.3"
+  }
+}

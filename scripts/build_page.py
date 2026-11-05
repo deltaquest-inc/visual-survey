@@ -73,7 +73,7 @@ def main():
   <p class="shows">{html.escape(s['shows'].rstrip('.'))}.</p>{sibnote}
   <div class="tags">{tags}</div>
   <p class="label">Your comment</p>
-  <ul class="yours">{comments}</ul>
+  <ul class="yours list-disc">{comments}</ul>
   <div class="verdict" role="group" aria-label="Pin {n} verdict">
    <button type="button" class="ok" data-v="ok">Correct</button>
    <button type="button" class="fix" data-v="fix">Needs fixing</button>
@@ -83,6 +83,8 @@ def main():
  </div>
 </article>''')
     tpl = open(os.path.join(HERE, 'page.tpl.html')).read()
+    design_css = open(os.path.join(HERE, 'design.css')).read()
+    tpl = tpl.replace('__DESIGN_CSS__', design_css)
     out = (tpl.replace('<!--CARDS-->', '\n'.join(cards)).replace('__TITLE__', html.escape(a.title))
            .replace('__INTRO__', html.escape(a.intro)).replace('__TOTAL__', str(len(manifest)))
            .replace('__SOURCE_NOTE__', ' The image opens the source page.' if a.source_url_template else ''))
