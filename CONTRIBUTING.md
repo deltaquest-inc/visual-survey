@@ -1,11 +1,14 @@
 # Contributing
 
 Issues and pull requests are welcome. This is a small set of plain scripts, so changes that
-keep it that way (standard library only, no network access except through the review CLIs
-you configure) are the easiest to accept.
+keep it that way (standard library only for the survey scripts, no network access except through the
+review CLIs you configure) are the easiest to accept. The one exception is the Tailwind
+devDependency, which only compiles the committed `scripts/design.css` (see `DESIGN.md`).
 
 - Open an issue first for anything larger than a bug fix.
-- Run `python3 -m unittest discover -s tests` and `ruff check .` before opening a pull request.
+- Before opening a pull request, run the same commands as CI: `npm ci`, `npm run design:check`,
+  `python3 -m unittest discover -s tests` and `ruff check .`. If you changed styling, run
+  `npm run design:build` first and commit the regenerated `scripts/design.css`.
 - Do not add sample images, comments or data you do not have the right to publish. Examples
   use CC0 material only.
 - The tool does not download images from Pinterest or any other site, and pull requests that

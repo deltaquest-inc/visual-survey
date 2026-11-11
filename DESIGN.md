@@ -1,6 +1,6 @@
 # Visual survey design system
 
-The generated correction page is a maintained browser interface. Tailwind v4 compiles local CSS at development time; the Python generator embeds the committed output so respondents need no Node runtime, network CSS service or extra asset file.
+The generated correction page is a maintained browser interface. Tailwind v4 compiles local CSS at development time; the Python generator embeds the committed output so respondents need no Node runtime, no network request for the Tailwind output and no extra asset file. The page template still loads the Google Fonts stylesheet.
 
 ## Token sources
 

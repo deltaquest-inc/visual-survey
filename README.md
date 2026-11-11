@@ -44,16 +44,23 @@ Pinterest, ask them to save the images and send them to you.
 
 ## Install
 
-Requirements: Python 3 (standard library only, no packages to install), and the CLI for each
+Requirements: Python 3 (standard library only for the survey scripts), and the CLI for each
 reviewer you run, already signed in: `codex`, `agy`, `claude`. `build_page.py` uses `sips`, so
 it runs on macOS only. The page it writes expects a host that provides a `claude.use` runtime
-with `db` and `user` capabilities (see the docstring in `scripts/build_page.py`). Node.js is needed
-only to run the test suite's checks of generated browser JavaScript; it is not needed to run the
-survey scripts.
+with `db` and `user` capabilities (see the docstring in `scripts/build_page.py`). Node.js 22 is
+needed to run the design checks and the test suite's checks of generated browser JavaScript; it
+is not needed to run the survey scripts. The Tailwind devDependency in `package.json` is the one
+exception to "standard library only": it compiles `scripts/design.css` at development time, and
+the generated page embeds that committed output.
 
     git clone <this repository>
     cd visual-survey
-    python3 -m unittest discover tests
+    npm ci
+    npm run design:check
+    python3 -m unittest discover -s tests
+
+After changing `scripts/design.source.css` or class usage, run `npm run design:build` and commit
+the regenerated `scripts/design.css`. See `DESIGN.md`.
 
 ## Choosing models
 

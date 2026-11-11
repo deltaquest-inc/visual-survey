@@ -11,4 +11,6 @@ All eight decoded image-source hashes, buttons and the h1 match between baseline
 
 `npm run design:check` verifies the source contract, explicit contrast pairs and byte-for-byte freshness of compiled CSS; its regression tests cover absent imports/tokens, insufficient contrast, empty inventory and missing theme coverage. `python3 -m unittest discover -s tests` passes all ten existing tests. The committed CSS keeps Python generation and respondent viewing independent of a Node runtime or CSS CDN.
 
+Practice used: the pinned Impeccable existing-page audit from `docs/design-references.md` (hierarchy, color, interaction and responsive review), applied under the DESIGN.md contract. It improved the page by fixing the document charset declaration, restoring `list-disc` on comment bullets after Preflight, and replacing implicit colors with explicit, checked contrast pairs.
+
 These comparisons verify the scoped migration and visible content, not every browser/interaction or a full accessibility certification.
